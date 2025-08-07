@@ -12,9 +12,33 @@
   </picture>
 </div>
 
-# <nome-do-repositório>
+# shared-workflows
 
 [Versão em Português](/README.md)
+
+Central repository with **reusable GitHub Actions workflows** for the organization's repositories.
+
+## What's in here?
+
+This repository stores standardized workflows that can be reused in other repositories within the organization using the [`workflow_call`](https://docs.github.com/en/actions/using-workflows/reusing-workflows) feature.
+
+Here you'll find:
+
+- Standardized CI/CD workflows
+- Automation flows for testing, building, and deployment
+- Shared conventions across projects
+
+## How to use in other repositories
+
+To reuse a workflow from this repository, add something like the example below to the desired repository:
+
+```yaml
+jobs:
+  example:
+    uses: cumbucadev/shared-workflows/.github/workflows/<workflow-name.yml>@main
+```
+
+Replacing <workflow-name.yml> with the file you want to use.
 
 ## 💬 New Features and Reporting Bugs
 
@@ -49,6 +73,6 @@ Make sure to read these files carefully before contributing. If you have any dif
 _Made with [contrib.rocks](https://contrib.rocks)._
 
 [github-discussions-doc]: https://docs.github.com/discussions
-[github-discussions]: https://github.com/cumbucadev/<nome-do-repositório>/discussions
+[github-discussions]: https://github.com/cumbucadev/shared-workflows/discussions
 [github-issues-doc]: https://docs.github.com/issues/tracking-your-work-with-issues/creating-an-issue
-[github-issues]: https://github.com/cumbucadev/<nome-do-repositório>/issues
+[github-issues]: https://github.com/cumbucadev/shared-workflows/issues
