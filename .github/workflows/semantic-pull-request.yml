@@ -1,0 +1,109 @@
+name: "Lint PR"
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - reopened
+
+permissions:
+  pull-requests: write
+
+jobs:
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        id: lint_pr_title
+        with:
+          types: |
+            chore
+            ci
+            docs
+            feat
+            fix
+            refactor
+            style
+            test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        # When the previous steps fails, the workflow would stop. By adding this
+        # condition you can continue the execution with the populated error message.
+        if: always() && (steps.lint_pr_title.outputs.error_message != null)
+        with:
+          header: pr-title-lint-error
+          message: |
+            📌 Esta mensagem está tanto em português quanto em inglês (mais abaixo)  — assim todo mundo consegue acompanhar!  
+            📌 This message is in both Portuguese and English (further down) — so everyone can follow along!
+          
+            🇧🇷 **Português**
+          
+            Oi! Muito obrigada por abrir esse pull request 💜 
+          
+            Por aqui, seguimos o padrão do [**Conventional Commits**](https://www.conventionalcommits.org/pt-br/v1.0.0/) para os **títulos das PRs**.  
+            Esse padrão ajuda a manter o histórico do projeto organizado e claro.
+          
+            No seu caso, o título do PR precisa de um pequeno ajuste pra ficar dentro desse formato. Isso é super comum no começo, então suaveee!
+          
+            👉 Um título válido geralmente começa com um prefixo como:
+            - `chore:` para tarefas de manutenção
+            - `ci:` para integrações contínuas
+            - `docs:` para mudanças na documentação
+            - `feat:` para novas funcionalidades
+            - `fix:` para correções de bugs
+            - `refactor:` para melhorias internas no código
+            - `style:` para mudanças de formatação
+            - `test:` para adição ou ajustes de testes
+          
+            Esses são só alguns exemplos — a [documentação oficial](https://www.conventionalcommits.org/pt-br/v1.0.0/) tem mais opções e explicações.  
+          
+            **Antes de seguir com o PR, dá uma olhadinha lá pra entender bem o padrão — isso vai te ajudar bastante nesta e em futuras contribuições também.**
+          
+            O título atual está assim (fora do padrão esperado):
+            
+            ```
+            ${{ steps.lint_pr_title.outputs.error_message }}
+            ```
+          
+            Qualquer dúvida, é só chamar por aqui! Estamos aqui para te ajudar!
+          
+            🇬🇧 **English**
+          
+            Hey there and thank you for opening this pull request! 💜  
+          
+            In this project, we follow the [**Conventional Commits**](https://www.conventionalcommits.org/en/v1.0.0/) specification for **PR titles**.  
+            This helps keep the commit history organized and clean.
+          
+            In your case, the PR title needs a small adjustment to match the expected format. Totally normal if this is your first time — no stress!
+          
+            👉 A valid PR title usually starts with a prefix like:
+            - `chore:` for maintenance tasks
+            - `ci:` for continuous integration changes
+            - `docs:` for documentation updates
+            - `feat:` for new features
+            - `fix:` for bug fixes
+            - `refactor:` for internal code improvements
+            - `style:` for formatting
+            - `test:` for test additions or changes
+          
+            These are just a few examples — the [official documentation](https://www.conventionalcommits.org/en/v1.0.0/) has more options and great explanations.  
+            **Before continuing with the PR, we recommend reading it — it'll really help with this and future contributions.**
+          
+            💡 Here's the current title (which doesn't follow the expected format):
+          
+            ```
+            ${{ steps.lint_pr_title.outputs.error_message }}
+            ```
+          
+            Let us know if you need help updating it — we’re here to support you!
+
+      # Delete a previous comment when the issue has been resolved
+      - if: ${{ steps.lint_pr_title.outputs.error_message == null }}
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: pr-title-lint-error
+          delete: true
