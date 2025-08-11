@@ -36,13 +36,21 @@ Aqui você encontra:
 Para reutilizar um workflow deste repositório, adicione algo como o exemplo abaixo no repositório
 desejado:
 
-```yaml
+```yml
 jobs:
   exemplo:
-    uses: cumbucadev/shared-workflows/.github/workflows/<nome-do-workflow.yml>@main
+    uses: cumbucadev/shared-workflows/.github/workflows/<workflow>/<version>/<nome-do-workflow.yml>@main
 ```
 
 Substituindo <nome-do-workflow.yml> pelo arquivo desejado.
+
+Exemplo real de uso:
+
+```yml
+jobs:
+  exemplo:
+    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request/v1/semantic-pull-request.yml@main
+```
 
 ## 💬 Novos Funcionalidades e Reportar Bugs
 
