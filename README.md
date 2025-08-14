@@ -19,6 +19,16 @@
 Repositório central com **workflows reutilizáveis** do GitHub Actions para os repositórios da
 organização.
 
+- [Shared Workflows](#shared-workflows)
+   * [O que tem aqui?](#o-que-tem-aqui)
+   * [Como usar em outros repositórios](#como-usar-em-outros-repositórios)
+   * [Catálogo](#catálogo)
+      + [semantic-pull-request](#semantic-pull-request)
+   * [💬 Novos Funcionalidades e Reportar Bugs](#-novos-funcionalidades-e-reportar-bugs)
+   * [💡 Dúvidas? Ideias?](#-dúvidas-ideias)
+   * [💻 Contribuindo com o Código do Projeto](#-contribuindo-com-o-código-do-projeto)
+   * [❤️ Quem já Contribuiu](#-quem-já-contribuiu)
+
 ## O que tem aqui?
 
 Este repositório armazena workflows padronizados que podem ser utilizados em outros repositórios da
@@ -39,7 +49,7 @@ desejado:
 ```yml
 jobs:
   exemplo:
-    uses: cumbucadev/shared-workflows/.github/workflows/<workflow>/<version>/<nome-do-workflow.yml>@main
+    uses: cumbucadev/shared-workflows/.github/workflows/<nome-do-workflow.yml>@main
 ```
 
 Substituindo <nome-do-workflow.yml> pelo arquivo desejado.
@@ -49,8 +59,49 @@ Exemplo real de uso:
 ```yml
 jobs:
   exemplo:
-    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request/v1/semantic-pull-request.yml@main
+    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request-v1.yml@main
 ```
+
+## Catálogo
+
+Abaixo estão os workflows compartilhados atualmente usados na organização Cumbuca. Fazemos o
+versionamento **pela major no nome do arquivo** (ex.: `-v1`, `-v2`). Veja o changelog para mudanças
+quebráveis e notas de migração.
+
+### semantic-pull-request
+
+#### Descrição
+
+Garante que os títulos dos pull requests sigam a especificação do
+[Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/).
+Se o título não estiver no formato esperado, o workflow publica um comentário bilíngue (português +
+inglês) explicando o problema, dando exemplos de prefixos válidos e incluindo links para a
+documentação oficial. Assim que o título for corrigido, o comentário é removido automaticamente.
+
+#### Gatilhos
+
+- `workflow_call`
+- `pull_request` (opened, edited, reopened)
+
+#### Resumo de comportamento
+
+- Valida os títulos de PRs contra uma lista permitida de tipos do Conventional Commits:
+  - `chore`, `ci`, `docs`, `feat`, `fix`, `refactor`, `style`, `test`
+- Se inválido:
+  - Falha o check
+  - Publica um comentário fixo com contexto, exemplos e links em PT-BR e EN
+- Se válido:
+  - Remove qualquer comentário de erro anterior
+- Ajuda a manter o histórico do projeto limpo e padronizado, facilitando automações
+  (ex.: changelogs, releases)
+
+#### Changelog
+
+- **v1** — Lançamento inicial.
+  - Aplica os tipos permitidos do Conventional Commits (`chore`, `ci`, `docs`, `feat`, `fix`,
+    `refactor`, `style`, `test`)
+  - Inclui orientação bilíngue para contribuintes quando o título é inválido
+  - Remove automaticamente comentários de orientação quando o título é corrigido
 
 ## 💬 Novos Funcionalidades e Reportar Bugs
 

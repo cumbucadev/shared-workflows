@@ -12,11 +12,21 @@
   </picture>
 </div>
 
-# shared-workflows
+# Shared Workflows
 
 [Versão em Português](/README.md)
 
 Central repository with **reusable GitHub Actions workflows** for the organization's repositories.
+
+- [Shared Workflows](#shared-workflows)
+   * [What's in here?](#whats-in-here)
+   * [How to use in other repositories](#how-to-use-in-other-repositories)
+   * [Catalog](#catalog)
+      + [semantic-pull-request](#semantic-pull-request)
+   * [💬 New Features and Reporting Bugs](#-new-features-and-reporting-bugs)
+   * [💡 Questions? Ideas?](#-questions-ideas)
+   * [💻 Contributing to the Project's Code](#-contributing-to-the-projects-code)
+   * [❤️ Contributors](#-contributors)
 
 ## What's in here?
 
@@ -35,7 +45,7 @@ To reuse a workflow from this repository, add something like the example below t
 ```yml
 jobs:
   example:
-    uses: cumbucadev/shared-workflows/.github/workflows/<workflow>/<version>/<workflow-name.yml>@main
+    uses: cumbucadev/shared-workflows/.github/workflows/<workflow-name.yml>@main
 ```
 
 Replacing <workflow-name.yml> with the file you want to use.
@@ -45,8 +55,48 @@ Real example of use:
 ```yml
 jobs:
   example:
-    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request/v1/semantic-pull-request.yml@main
+    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request-v1.yml@main
 ```
+
+## Catalog
+
+Below are the shared workflows currently used across the Cumbuca org. We version **by major in the
+filename** (e.g., `-v1`, `-v2`). See the changelogs for breaking changes and migration notes.
+
+### semantic-pull-request
+
+#### Description
+
+Ensures that pull request titles follow the
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+If the title doesn’t match the expected format, the workflow posts a bilingual (Portuguese +
+English) comment explaining the problem, giving examples of valid prefixes, and linking to the
+official docs for guidance. Once the title is fixed, the comment is automatically removed.
+
+#### Triggers
+
+- `workflow_call`
+- `pull_request` (opened, edited, reopened)
+
+#### Behavior summary
+
+- Validates PR titles against an allowed list of Conventional Commit types:
+  - `chore`, `ci`, `docs`, `feat`, `fix`, `refactor`, `style`, `test`
+- If invalid:
+  - Fails the check
+  - Posts a sticky comment with context, examples, and links in both PT-BR and EN
+- If valid:
+  - Removes any previous error comment
+- Helps maintain a clean, standardized project history, improving automation (e.g., changelogs,
+releases)
+
+#### Changelog
+
+- **v1** — Initial release.
+  - Enforces allowed Conventional Commit types (`chore`, `ci`, `docs`, `feat`, `fix`, `refactor`,
+  `style`, `test`)
+  - Adds bilingual guidance for contributors when the title is invalid
+  - Automatically cleans up guidance comments once the title is fixed
 
 ## 💬 New Features and Reporting Bugs
 
