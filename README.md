@@ -85,8 +85,8 @@ Certifique-se de ler esses arquivos com atenção antes de contribuir. Se tiver 
 
 ## ❤️ Quem já Contribuiu
 
-<a href="https://github.com/cumbucadev/generic-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cumbucadev/generic-template" />
+<a href="https://github.com/cumbucadev/shared-workflows/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cumbucadev/shared-workflows" />
 </a></br></br>
 
 _Made with [contrib.rocks](https://contrib.rocks)._

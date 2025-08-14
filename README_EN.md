@@ -76,7 +76,7 @@ Make sure to read these files carefully before contributing. If you have any dif
 
 ## ❤️ Contributors
 
-[![contributors](https://contrib.rocks/image?repo=cumbucadev/generic-template)](https://github.com/cumbucadev/generic-template/graphs/contributors)
+[![contributors](https://contrib.rocks/image?repo=cumbucadev/shared-workflows)](https://github.com/cumbucadev/shared-workflows/graphs/contributors)
 
 _Made with [contrib.rocks](https://contrib.rocks)._
 
