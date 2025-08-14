@@ -32,13 +32,21 @@ Here you'll find:
 
 To reuse a workflow from this repository, add something like the example below to the desired repository:
 
-```yaml
+```yml
 jobs:
   example:
-    uses: cumbucadev/shared-workflows/.github/workflows/<workflow-name.yml>@main
+    uses: cumbucadev/shared-workflows/.github/workflows/<workflow>/<version>/<workflow-name.yml>@main
 ```
 
 Replacing <workflow-name.yml> with the file you want to use.
+
+Real example of use:
+
+```yml
+jobs:
+  example:
+    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request/v1/semantic-pull-request.yml@main
+```
 
 ## 💬 New Features and Reporting Bugs
 
