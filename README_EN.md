@@ -22,7 +22,7 @@ Central repository with **reusable GitHub Actions workflows** for the organizati
    * [What's in here?](#whats-in-here)
    * [How to use in other repositories](#how-to-use-in-other-repositories)
    * [Catalog](#catalog)
-      + [semantic-pull-request](#semantic-pull-request)
+      + [validate-pr-title](#validate-pr-title)
    * [💬 New Features and Reporting Bugs](#-new-features-and-reporting-bugs)
    * [💡 Questions? Ideas?](#-questions-ideas)
    * [💻 Contributing to the Project's Code](#-contributing-to-the-projects-code)
@@ -55,7 +55,7 @@ Real example of use:
 ```yml
 jobs:
   example:
-    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request-v1.yml@main
+    uses: cumbucadev/shared-workflows/.github/workflows/validate-pr-title-v1.yml@main
 ```
 
 ## Catalog
@@ -63,7 +63,7 @@ jobs:
 Below are the shared workflows currently used across the Cumbuca org. We version **by major in the
 filename** (e.g., `-v1`, `-v2`). See the changelogs for breaking changes and migration notes.
 
-### semantic-pull-request
+### validate-pr-title
 
 #### Description
 
@@ -80,8 +80,8 @@ official docs for guidance. Once the title is fixed, the comment is automaticall
 
 #### Behavior summary
 
-- Validates PR titles against an allowed list of Conventional Commit types:
-  - `chore`, `ci`, `docs`, `feat`, `fix`, `refactor`, `style`, `test`
+- Validates PR titles against the allowed list of Conventional Commit types:
+  - `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`
 - If invalid:
   - Fails the check
   - Posts a sticky comment with context, examples, and links in both PT-BR and EN

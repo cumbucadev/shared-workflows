@@ -23,7 +23,7 @@ organização.
    * [O que tem aqui?](#o-que-tem-aqui)
    * [Como usar em outros repositórios](#como-usar-em-outros-repositórios)
    * [Catálogo](#catálogo)
-      + [semantic-pull-request](#semantic-pull-request)
+      + [validate-pr-title](#validate-pr-title)
    * [💬 Novos Funcionalidades e Reportar Bugs](#-novos-funcionalidades-e-reportar-bugs)
    * [💡 Dúvidas? Ideias?](#-dúvidas-ideias)
    * [💻 Contribuindo com o Código do Projeto](#-contribuindo-com-o-código-do-projeto)
@@ -59,7 +59,7 @@ Exemplo real de uso:
 ```yml
 jobs:
   exemplo:
-    uses: cumbucadev/shared-workflows/.github/workflows/semantic-pull-request-v1.yml@main
+    uses: cumbucadev/shared-workflows/.github/workflows/validate-pr-title-v1.yml@main
 ```
 
 ## Catálogo
@@ -68,7 +68,7 @@ Abaixo estão os workflows compartilhados atualmente usados na organização Cum
 versionamento **pela major no nome do arquivo** (ex.: `-v1`, `-v2`). Veja o changelog para mudanças
 quebráveis e notas de migração.
 
-### semantic-pull-request
+### validate-pr-title
 
 #### Descrição
 
@@ -86,7 +86,7 @@ documentação oficial. Assim que o título for corrigido, o comentário é remo
 #### Resumo de comportamento
 
 - Valida os títulos de PRs contra uma lista permitida de tipos do Conventional Commits:
-  - `chore`, `ci`, `docs`, `feat`, `fix`, `refactor`, `style`, `test`
+  - `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`
 - Se inválido:
   - Falha o check
   - Publica um comentário fixo com contexto, exemplos e links em PT-BR e EN
