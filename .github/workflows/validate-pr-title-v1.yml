@@ -68,6 +68,20 @@ jobs:
             - `style:` para mudanças de formatação
             - `test:` para adição ou ajustes de testes
 
+            **Exemplos de títulos que adoraríamos ver por aqui:**
+
+            ```
+            prefixo: mensagem descritiva
+            ```
+
+            ```
+            feat: permitir que o objeto de configuração fornecido estenda outras configurações
+            ```
+
+            ```
+            fix: corrige pequenos erros de digitação no código
+            ```
+
             Esses são só alguns exemplos — a [documentação oficial](https://www.conventionalcommits.org/pt-br/v1.0.0/) tem mais opções e explicações.
 
             **Antes de seguir com o PR, dá uma olhadinha lá pra entender bem o padrão — isso vai te ajudar bastante nesta e em futuras contribuições também.**
@@ -101,6 +115,20 @@ jobs:
             - `revert:` for reverting a previous commit
             - `style:` for formatting changes
             - `test:` for test additions or changes
+
+            **Examples of titles we'd love to see here:**
+
+            ```
+            prefix: descriptive message
+            ```
+
+            ```
+            feat: allow the provided config object to extend other configurations
+            ```
+
+            ```
+            fix: correct minor typos in the code
+            ```
 
             These are just a few examples — the [official documentation](https://www.conventionalcommits.org/en/v1.0.0/) has more options and great explanations.
             **Before continuing with the PR, we recommend reading it — it'll really help with this and future contributions.**
