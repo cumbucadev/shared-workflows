@@ -19,14 +19,14 @@
 Central repository with **reusable GitHub Actions workflows** for the organization's repositories.
 
 - [Shared Workflows](#shared-workflows)
-   * [What's in here?](#whats-in-here)
-   * [How to use in other repositories](#how-to-use-in-other-repositories)
-   * [Catalog](#catalog)
-      + [validate-pr-title](#validate-pr-title)
-   * [💬 New Features and Reporting Bugs](#-new-features-and-reporting-bugs)
-   * [💡 Questions? Ideas?](#-questions-ideas)
-   * [💻 Contributing to the Project's Code](#-contributing-to-the-projects-code)
-   * [❤️ Contributors](#-contributors)
+  - [What's in here?](#whats-in-here)
+  - [How to use in other repositories](#how-to-use-in-other-repositories)
+  - [Catalog](#catalog)
+    - [validate-pr-title](#validate-pr-title)
+  - [💬 New Features and Reporting Bugs](#-new-features-and-reporting-bugs)
+  - [💡 Questions? Ideas?](#-questions-ideas)
+  - [💻 Contributing to the Project's Code](#-contributing-to-the-projects-code)
+  - [❤️ Contributors](#-contributors)
 
 ## What's in here?
 
@@ -63,6 +63,40 @@ jobs:
 Below are the shared workflows currently used across the Cumbuca org. We version **by major in the
 filename** (e.g., `-v1`, `-v2`). See the changelogs for breaking changes and migration notes.
 
+### autoassign-issue
+
+#### Description
+
+This workflow automatically assigns an issue to a user when they comment a **specific keyword** on the issue.
+The comment works as a trigger of “I want to take this issue,” making the self-assignment process simple, fast, and transparent.
+Additionally, the workflow posts a bilingual (English + Portuguese) comment confirming that the issue has been assigned to the user.
+
+#### Triggers
+
+- `issue_comment` (created)
+
+#### Keywords (triggers)
+
+- `"bora"`, `"bora!"`, `"dibs"`, `"dibs!"`
+  _(case-insensitive — any combination of uppercase/lowercase letters is accepted)_
+
+#### Behavior Summary
+
+- When someone comments one of the trigger keywords on an open issue:
+
+  - The issue is automatically assigned to that user
+  - A bilingual comment is posted confirming the assignment and including a link to the contributing guide
+
+- Helps streamline the contribution process, avoiding manual assignee management and improving visibility of who is working on each issue
+
+#### Changelog
+
+- **v1** — Initial release
+
+  - Implements autoassign for comments containing specific trigger keywords
+  - Supported keywords: `"bora"`, `"bora!"`, `"dibs"`, `"dibs!"`
+  - Posts a bilingual confirmation comment (PT-BR + EN)
+
 ### validate-pr-title
 
 #### Description
@@ -88,13 +122,13 @@ official docs for guidance. Once the title is fixed, the comment is automaticall
 - If valid:
   - Removes any previous error comment
 - Helps maintain a clean, standardized project history, improving automation (e.g., changelogs,
-releases)
+  releases)
 
 #### Changelog
 
 - **v1** — Initial release.
   - Enforces allowed Conventional Commit types (`chore`, `ci`, `docs`, `feat`, `fix`, `refactor`,
-  `style`, `test`)
+    `style`, `test`)
   - Adds bilingual guidance for contributors when the title is invalid
   - Automatically cleans up guidance comments once the title is fixed
 

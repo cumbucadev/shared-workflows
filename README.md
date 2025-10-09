@@ -20,14 +20,14 @@ Repositório central com **workflows reutilizáveis** do GitHub Actions para os 
 organização.
 
 - [Shared Workflows](#shared-workflows)
-   * [O que tem aqui?](#o-que-tem-aqui)
-   * [Como usar em outros repositórios](#como-usar-em-outros-repositórios)
-   * [Catálogo](#catálogo)
-      + [validate-pr-title](#validate-pr-title)
-   * [💬 Novos Funcionalidades e Reportar Bugs](#-novos-funcionalidades-e-reportar-bugs)
-   * [💡 Dúvidas? Ideias?](#-dúvidas-ideias)
-   * [💻 Contribuindo com o Código do Projeto](#-contribuindo-com-o-código-do-projeto)
-   * [❤️ Quem já Contribuiu](#-quem-já-contribuiu)
+  - [O que tem aqui?](#o-que-tem-aqui)
+  - [Como usar em outros repositórios](#como-usar-em-outros-repositórios)
+  - [Catálogo](#catálogo)
+    - [validate-pr-title](#validate-pr-title)
+  - [💬 Novos Funcionalidades e Reportar Bugs](#-novos-funcionalidades-e-reportar-bugs)
+  - [💡 Dúvidas? Ideias?](#-dúvidas-ideias)
+  - [💻 Contribuindo com o Código do Projeto](#-contribuindo-com-o-código-do-projeto)
+  - [❤️ Quem já Contribuiu](#-quem-já-contribuiu)
 
 ## O que tem aqui?
 
@@ -67,6 +67,40 @@ jobs:
 Abaixo estão os workflows compartilhados atualmente usados na organização Cumbuca. Fazemos o
 versionamento **pela major no nome do arquivo** (ex.: `-v1`, `-v2`). Veja o changelog para mudanças
 quebráveis e notas de migração.
+
+### autoassign-issue
+
+#### Descrição
+
+Este workflow atribui automaticamente uma issue a um usuário quando ele comenta uma **palavra-chave específica** na issue.
+O comentário funciona como um gatilho de “quero assumir esta issue”, tornando o processo de autoatribuição simples, rápido e transparente.
+Além disso, o workflow publica um comentário bilíngue (português + inglês) confirmando que a issue foi atribuída ao usuário.
+
+#### Gatilhos
+
+- `issue_comment` (created)
+
+#### Palavras-chave (triggers)
+
+- `"bora"`, `"bora!"`, `"dibs"`, `"dibs!"`
+  _(case-insensitive — qualquer variação de maiúsculas/minúsculas é aceita)_
+
+#### Resumo de comportamento
+
+- Quando alguém comenta uma das palavras-chave em uma issue aberta:
+
+  - A issue é automaticamente atribuída a esse usuário
+  - Um comentário bilíngue é publicado confirmando a atribuição e incluindo link para o guia de contribuição
+
+- Facilita o processo de contribuição, evitando trabalho manual de manutenção de assignees e melhorando a visibilidade de quem está trabalhando em cada issue
+
+#### Changelog
+
+- **v1** — Lançamento inicial
+
+  - Implementa autoassign para comentários com palavras-chave específicas
+  - Palavras-chave suportadas: `"bora"`, `"bora!"`, `"dibs"`, `"dibs!"`
+  - Inclui comentário de confirmação bilíngue (PT-BR + EN)
 
 ### validate-pr-title
 
