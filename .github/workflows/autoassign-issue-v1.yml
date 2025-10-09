@@ -1,4 +1,4 @@
-name: Autoassign Issue
+name: Autoassign issue
 
 on:
   issue_comment:
