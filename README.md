@@ -43,20 +43,26 @@ Aqui você encontra:
 
 ## Como usar em outros repositórios
 
-Para reutilizar um workflow deste repositório, adicione algo como o exemplo abaixo no repositório
-desejado:
+Você pode reutilizar workflows deste repositório em outros projetos adicionando um trecho como o
+exemplo abaixo no seu arquivo `.github/workflows/<nome>.yml`:
 
 ```yml
+permissions: <permissões>
+
 jobs:
   exemplo:
     uses: cumbucadev/shared-workflows/.github/workflows/<nome-do-workflow.yml>@main
 ```
 
-Substituindo <nome-do-workflow.yml> pelo arquivo desejado.
+Substituindo `<permissões>` pelas permissões necessárias e `<nome-do-workflow.yml>` pelo arquivo
+desejado.
 
 Exemplo real de uso:
 
 ```yml
+permissions:
+  pull-requests: write
+
 jobs:
   exemplo:
     uses: cumbucadev/shared-workflows/.github/workflows/validate-pr-title-v1.yml@main
