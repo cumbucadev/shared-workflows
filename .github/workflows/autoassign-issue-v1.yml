@@ -1,6 +1,7 @@
 name: Autoassign issue
 
 on:
+  workflow_call:
   issue_comment:
     types:
       - created
