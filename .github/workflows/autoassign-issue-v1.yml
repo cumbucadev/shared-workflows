@@ -27,22 +27,23 @@ jobs:
     steps:
       - name: Check if comment matches trigger words
         id: check_comment
+        env:
+          COMMENT: "${{ github.event.comment.body }}"
         run: |
-          comment="${{ github.event.comment.body }}"
-          comment_lower=$(echo "$comment" | tr '[:upper:]' '[:lower:]')
+          normalized_comment=$(echo "$COMMENT" | tr '[:upper:]' '[:lower:]' | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')
 
           triggers=("bora" "bora!" "dibs" "dibs!")
 
           should_assign=false
 
           for word in "${triggers[@]}"; do
-            if [[ "$comment_lower" == "$word" ]]; then
+            if [[ "$normalized_comment" == "$word" ]]; then
               should_assign=true
               break
             fi
           done
 
-          echo "should_assign=$should_assign" >> $GITHUB_OUTPUT
+          echo "should_assign=$should_assign" >> "$GITHUB_OUTPUT"
 
       - name: Assign issue to commenter
         if: steps.check_comment.outputs.should_assign == 'true'
