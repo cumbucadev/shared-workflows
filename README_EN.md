@@ -22,6 +22,7 @@ Central repository with **reusable GitHub Actions workflows** for the organizati
   - [What's in here?](#whats-in-here)
   - [How to use in other repositories](#how-to-use-in-other-repositories)
   - [Catalog](#catalog)
+    - [autoassign-issue](#autoassign-issue)
     - [validate-pr-title](#validate-pr-title)
   - [💬 New Features and Reporting Bugs](#-new-features-and-reporting-bugs)
   - [💡 Questions? Ideas?](#-questions-ideas)

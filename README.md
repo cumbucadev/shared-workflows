@@ -23,6 +23,7 @@ organização.
   - [O que tem aqui?](#o-que-tem-aqui)
   - [Como usar em outros repositórios](#como-usar-em-outros-repositórios)
   - [Catálogo](#catálogo)
+    - [autoassign-issue](#autoassign-issue)
     - [validate-pr-title](#validate-pr-title)
   - [💬 Novos Funcionalidades e Reportar Bugs](#-novos-funcionalidades-e-reportar-bugs)
   - [💡 Dúvidas? Ideias?](#-dúvidas-ideias)
