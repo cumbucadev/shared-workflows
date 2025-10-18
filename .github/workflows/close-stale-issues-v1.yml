@@ -1,0 +1,125 @@
+name: 'Close stale issues and PRs'
+on:
+  schedule:
+    - cron: '00 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v10
+        with:
+          stale-issue-message: |
+            📌 Esta mensagem está tanto em português quanto em inglês (mais abaixo)  — assim todo mundo consegue acompanhar!
+            📌 This message is in both Portuguese and English (further down) — so everyone can follow along!
+
+            🇧🇷 **Português**
+
+            👋 Olá!
+
+            Esta issue está obsoleta porque ficou aberta por 45 dias sem atividade. Remova o rótulo de stale ou comente, caso contrário ela será fechada em 15 dias.
+
+            🇬🇧 **English**
+
+            Hey there! 👋
+
+            This issue is stale because it has been open 45 days with no activity. Remove stale label or comment or this will be closed in 15 days.
+          stale-pr-message: |
+            📌 Esta mensagem está tanto em português quanto em inglês (mais abaixo)  — assim todo mundo consegue acompanhar!
+            📌 This message is in both Portuguese and English (further down) — so everyone can follow along!
+
+            🇧🇷 **Português**
+
+            👋 Olá!
+
+            Este PR está obsoleto porque ficou aberto por 30 dias sem atividade. Remova o rótulo de stale ou comente, caso contrário ele será fechado em 15 dias.
+
+            🇬🇧 **English**
+
+            Hey there! 👋
+
+            This PR is stale because it has been open 30 days with no activity. Remove stale label or comment or this will be closed in 15 days.
+          close-issue-message: |
+            📌 Esta mensagem está tanto em português quanto em inglês (mais abaixo)  — assim todo mundo consegue acompanhar!
+            📌 This message is in both Portuguese and English (further down) — so everyone can follow along!
+
+            🇧🇷 **Português**
+
+            👋 Olá!
+
+            Sua issue foi fechada automaticamente por inatividade.
+
+            📅 **Linha do tempo:**
+            - Marcada como inativa após 45 dias sem atividade
+            - Fechada após 15 dias adicionais sem resposta
+
+            💡 **Próximos passos:**
+            - Se isso ainda for relevante, reabra e forneça uma atualização
+            - Considere adicionar mais detalhes ou contexto, se necessário
+            - Sinta-se à vontade para criar uma nova issue se a situação tiver mudado
+
+            Obrigado pela sua contribuição! 🙏
+
+            🇬🇧 **English**
+
+            Hey there! 👋
+
+            Your issue was automatically closed due to inactivity.
+
+            📅 **Timeline:**
+            - Marked as stale after 45 days of inactivity
+            - Closed after 15 additional days without response
+
+            💡 **Next steps:**
+            - If this is still relevant, please reopen and provide an update
+            - Consider adding more details or context if needed
+            - Feel free to create a new issue if the situation has changed
+
+            Thanks for your contribution! 🙏
+          close-pr-message: |
+            📌 Esta mensagem está tanto em português quanto em inglês (mais abaixo)  — assim todo mundo consegue acompanhar!
+            📌 This message is in both Portuguese and English (further down) — so everyone can follow along!
+
+            🇧🇷 **Português**
+
+            👋 Olá!
+
+            Seu pull request foi fechado automaticamente por inatividade.
+
+            📅 **Linha do tempo:**
+            - Marcado como inativo após 30 dias sem atividade
+            - Fechado após 15 dias adicionais sem resposta
+
+            🔄 **Para continuar:**
+            - Reabra este PR se quiser continuar trabalhando nele
+            - Resolva quaisquer comentários de revisão pendentes
+            - Faça rebase/merge com a main mais recente, se necessário
+
+            Obrigado pela sua contribuição! 🚀
+
+            🇬🇧 **English**
+
+            Hey there! 👋
+
+            Your pull request was automatically closed due to inactivity.
+
+            📅 **Timeline:**
+            - Marked as stale after 30 days of inactivity  
+            - Closed after 15 additional days without response
+
+            🔄 **To continue:**
+            - Reopen this PR if you want to continue working on it
+            - Address any pending review comments
+            - Rebase/merge with the latest main branch if needed
+
+            Thanks for your contribution! 🚀
+          days-before-issue-stale: 45
+          days-before-pr-stale: 30
+          days-before-issue-close: 60
+          days-before-pr-close: 45

@@ -24,6 +24,7 @@ organização.
   - [Como usar em outros repositórios](#como-usar-em-outros-repositórios)
   - [Catálogo](#catálogo)
     - [autoassign-issue](#autoassign-issue)
+    - [close-stale-issues](#close-stale-issues)
     - [validate-pr-title](#validate-pr-title)
   - [💬 Novos Funcionalidades e Reportar Bugs](#-novos-funcionalidades-e-reportar-bugs)
   - [💡 Dúvidas? Ideias?](#-dúvidas-ideias)
@@ -95,19 +96,65 @@ Além disso, o workflow publica um comentário bilíngue (português + inglês) 
 #### Resumo de comportamento
 
 - Quando alguém comenta uma das palavras-chave em uma issue aberta:
-
   - A issue é automaticamente atribuída a esse usuário
   - Um comentário bilíngue é publicado confirmando a atribuição e incluindo link para o guia de contribuição
-
 - Facilita o processo de contribuição, evitando trabalho manual de manutenção de assignees e melhorando a visibilidade de quem está trabalhando em cada issue
 
 #### Changelog
 
 - **v1** — Lançamento inicial
-
   - Implementa autoassign para comentários com palavras-chave específicas
   - Palavras-chave suportadas: `"bora"`, `"bora!"`, `"dibs"`, `"dibs!"`
   - Inclui comentário de confirmação bilíngue (PT-BR + EN)
+
+### close-stale-issues
+
+#### Descrição
+
+Este workflow identifica automaticamente issues e pull requests inativos e os marca como “stale” após um período sem 
+atividade. Caso não haja interação após a marcação, eles são fechados automaticamente. Todas as mensagens são bilíngues
+(português + inglês) para facilitar a comunicação com colaboradores.
+
+#### Gatilhos
+
+- `schedule` (cron: `00 4 * * *`)
+- `workflow_dispatch` (execução manual)
+
+#### Mensagens
+
+- Mensagem para issue marcada como stale:
+  - Explica que a issue ficou 45 dias sem atividade e será fechada em 15 dias se não houver interação
+  - Bilíngue (PT-BR + EN)
+
+- Mensagem para PR marcado como stale:
+  - Explica que o PR ficou 30 dias sem atividade e será fechado em 15 dias se não houver interação
+  - Bilíngue (PT-BR + EN)
+
+- Mensagem ao fechar issue:
+  - Resume a linha do tempo: marcada como inativa após 45 dias, fechada após 15 dias adicionais
+  - Fornece próximos passos (reabrir, atualizar contexto, criar nova issue se necessário)
+  - Bilíngue (PT-BR + EN)
+
+- Mensagem ao fechar PR:
+  - Resume a linha do tempo: marcado como inativo após 30 dias, fechado após 15 dias adicionais
+  - Fornece próximos passos (reabrir, resolver revisões, rebase/merge com a main)
+  - Bilíngue (PT-BR + EN)
+
+#### Resumo de comportamento
+
+- A cada dia às 04:00 (UTC no cron `00 4 * * *`), o workflow avalia issues e PRs:
+  - Issues: marcadas como stale após 45 dias sem atividade; fechadas após 15 dias adicionais (mensagens bilíngues)
+  - PRs: marcados como stale após 30 dias sem atividade; fechados após 15 dias adicionais (mensagens bilíngues)
+- Pode ser executado manualmente via `workflow_dispatch`
+- Publica comentários claros com instruções do que fazer para manter aberto (remover label de stale ou comentar)
+
+#### Changelog
+
+- **v1** — Lançamento inicial
+  - Implementa marcação automática de inatividade (stale) para issues (45 dias) e PRs (30 dias)
+  - Fecha automaticamente após 15 dias adicionais sem resposta
+  - Inclui mensagens bilíngues para marcação e fechamento de issues/PRs
+  - Agendamento diário via cron e suporte a execução manual
 
 ### validate-pr-title
 
