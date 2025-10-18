@@ -23,6 +23,7 @@ Central repository with **reusable GitHub Actions workflows** for the organizati
   - [How to use in other repositories](#how-to-use-in-other-repositories)
   - [Catalog](#catalog)
     - [autoassign-issue](#autoassign-issue)
+    - [close-stale-issues](#close-stale-issues)
     - [validate-pr-title](#validate-pr-title)
   - [💬 New Features and Reporting Bugs](#-new-features-and-reporting-bugs)
   - [💡 Questions? Ideas?](#-questions-ideas)
@@ -91,19 +92,65 @@ Additionally, the workflow posts a bilingual (English + Portuguese) comment conf
 #### Behavior Summary
 
 - When someone comments one of the trigger keywords on an open issue:
-
   - The issue is automatically assigned to that user
   - A bilingual comment is posted confirming the assignment and including a link to the contributing guide
-
 - Helps streamline the contribution process, avoiding manual assignee management and improving visibility of who is working on each issue
 
 #### Changelog
 
 - **v1** — Initial release
-
   - Implements autoassign for comments containing specific trigger keywords
   - Supported keywords: `"bora"`, `"bora!"`, `"dibs"`, `"dibs!"`
   - Posts a bilingual confirmation comment (PT-BR + EN)
+
+### close-stale-issues
+
+#### Description
+
+This workflow automatically identifies inactive issues and pull requests and marks them as “stale” after a period 
+without activity. If there is no interaction after being marked, they are automatically closed. All messages are 
+bilingual (Portuguese + English) to facilitate communication with contributors.
+
+#### Triggers
+
+- `schedule` (cron: `00 4 * * *`)
+- `workflow_dispatch` (manual run)
+
+#### Messages
+
+- Message for issue marked as stale:
+  - Explains that the issue had 45 days without activity and will be closed in 15 days if there is no interaction
+  - Bilingual (PT-BR + EN)
+
+- Message for PR marked as stale:
+  - Explains that the PR had 30 days without activity and will be closed in 15 days if there is no interaction
+  - Bilingual (PT-BR + EN)
+
+- Message when closing issue:
+  - Summarizes the timeline: marked as inactive after 45 days, closed after an additional 15 days
+  - Provides next steps (reopen, update context, create a new issue if necessary)
+  - Bilingual (PT-BR + EN)
+
+- Message when closing PR:
+  - Summarizes the timeline: marked as inactive after 30 days, closed after an additional 15 days
+  - Provides next steps (reopen, address reviews, rebase/merge with main)
+  - Bilingual (PT-BR + EN)
+
+#### Behavior summary
+
+- Every day at 04:00 (UTC in cron `00 4 * * *`), the workflow evaluates issues and PRs:
+  - Issues: marked as stale after 45 days without activity; closed after an additional 15 days (bilingual messages)
+  - PRs: marked as stale after 30 days without activity; closed after an additional 15 days (bilingual messages)
+- Can be run manually via `workflow_dispatch`
+- Posts clear comments with instructions on what to do to keep it open (remove the stale label or comment)
+
+#### Changelog
+
+- **v1** — Initial release
+  - Implements automatic inactivity marking (stale) for issues (45 days) and PRs (30 days)
+  - Automatically closes after an additional 15 days without response
+  - Includes bilingual messages for marking and closing issues/PRs
+  - Daily scheduling via cron and manual run support
 
 ### validate-pr-title
 
