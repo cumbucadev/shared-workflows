@@ -99,7 +99,7 @@ jobs:
           issue-number: ${{ env.ISSUE_NUMBER }}
           body: |
             🇧🇷 **Português**
-            ⚠️ Esta issue já está atribuída a @${{ github.event.comment.user.login }}. Se você acredita que deveria ser reatribuída, converse com a pessoa atual ou com os mantenedores.
+            ⚠️ Esta issue #${{ github.event.issue.number }} já está atribuída a @${{ github.event.comment.user.login }}. Se você acredita que deveria ser reatribuída, converse com a pessoa atual ou com os mantenedores.
 
             🇬🇧 **English**
-            ⚠️ This issue is already assigned to @${{ github.event.comment.user.login }}. If you think it should be reassigned, please coordinate with the current assignee or the maintainers.
+            ⚠️ This issue #${{ github.event.issue.number }} is already assigned to @${{ github.event.comment.user.login }}. If you think it should be reassigned, please coordinate with the current assignee or the maintainers.
