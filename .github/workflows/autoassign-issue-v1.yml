@@ -65,6 +65,15 @@ jobs:
             echo "already_assigned=false" >> "$GITHUB_OUTPUT"
           fi
 
+          # Build a comma-separated string of @logins of current assignees
+          assignee_logins=$(echo "$issue_json" | jq -r '[.assignees[].login] | map("@"+.) | join(", ")')
+          # If empty, set a friendly fallback
+          if [[ -z "$assignee_logins" || "$assignee_logins" == "null" ]]; then
+            assignee_logins="(no assignees)"
+          fi
+
+          echo "assignee_logins=$assignee_logins" >> "$GITHUB_OUTPUT"
+
       - name: Assign issue to commenter
         if: steps.check_comment.outputs.should_assign == 'true' && steps.check_existing_assignees.outputs.already_assigned == 'false'
         env:
@@ -99,7 +108,7 @@ jobs:
           issue-number: ${{ env.ISSUE_NUMBER }}
           body: |
             🇧🇷 **Português**
-            ⚠️ Esta issue #${{ github.event.issue.number }} já está atribuída a @${{ github.event.comment.user.login }}. Se você acredita que deveria ser reatribuída, converse com a pessoa atual ou com os mantenedores.
+            ⚠️ Issue #${{ github.event.issue.number }} já está atribuída a ${{ steps.check_existing_assignees.outputs.assignee_logins }}. Se você acredita que deveria ser reatribuída, converse com a pessoa atual ou com os mantenedores.
 
             🇬🇧 **English**
-            ⚠️ This issue #${{ github.event.issue.number }} is already assigned to @${{ github.event.comment.user.login }}. If you think it should be reassigned, please coordinate with the current assignee or the maintainers.
+            ⚠️ Issue #${{ github.event.issue.number }} is already assigned to ${{ steps.check_existing_assignees.outputs.assignee_logins }}. If you think it should be reassigned, please coordinate with the current assignee or the maintainers.
