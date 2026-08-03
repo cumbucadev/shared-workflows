@@ -31,7 +31,7 @@ jobs:
           echo "pr_diff=${PR_DIFF}" >> "$GITHUB_OUTPUT"
 
       - name: Run actions/stale
-        uses: actions/stale@v10
+        uses: actions/stale@v11
         with:
           stale-issue-message: |
             📌 Esta mensagem está tanto em português quanto em inglês (mais abaixo)  — assim todo mundo consegue acompanhar!
